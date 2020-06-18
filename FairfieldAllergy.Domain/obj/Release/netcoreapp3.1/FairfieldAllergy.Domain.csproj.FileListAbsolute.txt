@@ -1,0 +1,18 @@
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\bin\Release\netcoreapp3.1\FairfieldAllergy.Domain.deps.json
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\bin\Release\netcoreapp3.1\FairfieldAllergy.Domain.dll
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\bin\Release\netcoreapp3.1\FairfieldAllergy.Domain.pdb
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\obj\Release\netcoreapp3.1\FairfieldAllergy.Domain.AssemblyInfoInputs.cache
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\obj\Release\netcoreapp3.1\FairfieldAllergy.Domain.AssemblyInfo.cs
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\obj\Release\netcoreapp3.1\FairfieldAllergy.Domain.dll
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\obj\Release\netcoreapp3.1\FairfieldAllergy.Domain.pdb
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\obj\Release\netcoreapp3.1\FairfieldAllergy.Domain.csprojAssemblyReference.cache
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\obj\Release\netcoreapp3.1\FairfieldAllergy.Domain.csproj.CoreCompileInputs.cache
+C:\OneDriveForBusiness Files\OneDrive - Walden Associates LTD\Desktop\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\bin\release\netcoreapp3.1\FairfieldAllergy.Domain.deps.json
+C:\OneDriveForBusiness Files\OneDrive - Walden Associates LTD\Desktop\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\bin\release\netcoreapp3.1\FairfieldAllergy.Domain.dll
+C:\OneDriveForBusiness Files\OneDrive - Walden Associates LTD\Desktop\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\bin\release\netcoreapp3.1\FairfieldAllergy.Domain.pdb
+C:\OneDriveForBusiness Files\OneDrive - Walden Associates LTD\Desktop\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\obj\release\netcoreapp3.1\FairfieldAllergy.Domain.csprojAssemblyReference.cache
+C:\OneDriveForBusiness Files\OneDrive - Walden Associates LTD\Desktop\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\obj\release\netcoreapp3.1\FairfieldAllergy.Domain.csproj.CoreCompileInputs.cache
+C:\OneDriveForBusiness Files\OneDrive - Walden Associates LTD\Desktop\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\obj\release\netcoreapp3.1\FairfieldAllergy.Domain.AssemblyInfoInputs.cache
+C:\OneDriveForBusiness Files\OneDrive - Walden Associates LTD\Desktop\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\obj\release\netcoreapp3.1\FairfieldAllergy.Domain.AssemblyInfo.cs
+C:\OneDriveForBusiness Files\OneDrive - Walden Associates LTD\Desktop\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\obj\release\netcoreapp3.1\FairfieldAllergy.Domain.dll
+C:\OneDriveForBusiness Files\OneDrive - Walden Associates LTD\Desktop\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\obj\release\netcoreapp3.1\FairfieldAllergy.Domain.pdb

@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\walden2020\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\walden2020\\.nuget\\packages"
+    ]
+  }
+}

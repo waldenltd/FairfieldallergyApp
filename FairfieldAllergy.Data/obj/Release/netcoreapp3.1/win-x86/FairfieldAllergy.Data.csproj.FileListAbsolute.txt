@@ -1,0 +1,14 @@
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Data\bin\Release\netcoreapp3.1\win-x86\FairfieldAllergy.Data.deps.json
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Data\bin\Release\netcoreapp3.1\win-x86\FairfieldAllergy.Data.dll
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Data\bin\Release\netcoreapp3.1\win-x86\FairfieldAllergy.Data.pdb
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Data\bin\Release\netcoreapp3.1\win-x86\Business.dll
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Data\bin\Release\netcoreapp3.1\win-x86\FairfieldAllergy.Domain.dll
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Data\bin\Release\netcoreapp3.1\win-x86\Business.pdb
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Data\bin\Release\netcoreapp3.1\win-x86\FairfieldAllergy.Domain.pdb
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Data\obj\Release\netcoreapp3.1\win-x86\FairfieldAllergy.Data.csprojAssemblyReference.cache
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Data\obj\Release\netcoreapp3.1\win-x86\FairfieldAllergy.Data.csproj.CoreCompileInputs.cache
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Data\obj\Release\netcoreapp3.1\win-x86\FairfieldAllergy.Data.AssemblyInfoInputs.cache
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Data\obj\Release\netcoreapp3.1\win-x86\FairfieldAllergy.Data.AssemblyInfo.cs
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Data\obj\Release\netcoreapp3.1\win-x86\FairfieldAllergy.Data.csproj.CopyComplete
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Data\obj\Release\netcoreapp3.1\win-x86\FairfieldAllergy.Data.dll
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Data\obj\Release\netcoreapp3.1\win-x86\FairfieldAllergy.Data.pdb

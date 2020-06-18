@@ -1,0 +1,174 @@
+﻿using Business.Configuration;
+using FairfieldAllergy.Data;
+using FairfieldAllergy.Domain.Models;
+using FairfieldAllergy.Domain.ViewModels;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Timers;
+
+namespace CreatingIDAndPasswords.Service
+{
+    public class CreateIds
+    {
+        System.Timers.Timer timer = null;
+        static string whyFaxWasNotSent = string.Empty;
+
+        public void Start()
+        {
+            timer = new System.Timers.Timer(30000);
+            timer.Elapsed += new ElapsedEventHandler(this.ServiceTimer_Tick);
+
+            timer.Enabled = true;
+            timer.Start();
+        }
+
+        public void Stop()
+        {
+            timer.Enabled = false;
+        }
+
+        private async void ServiceTimer_Tick(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            timer.Stop();
+
+            //1.  Get new records from Roach
+            //2.  Iterate through the records and create id's and passwords
+            //3.  Send email to user with information
+
+            // Generate a random number  
+            Random random = new Random();
+
+            // Use other methods   
+            RandomNumberGenerator generator = new RandomNumberGenerator();
+
+            FairfieldAllergeryRepository fairfieldAllergeryRepository = new FairfieldAllergeryRepository();
+
+            List<AllergyPatient> allergyPatient = new List<AllergyPatient>();
+
+
+            ConfigurationValues.FairfieldAllergyConnection = System.Configuration.ConfigurationManager.AppSettings["fairfieldDatabaseConnection"];
+            ConfigurationValues.RegisterUrl = System.Configuration.ConfigurationManager.AppSettings["registerUrl"];
+
+
+            OperationResult getCurrentUserId = fairfieldAllergeryRepository.GetCurrentId();
+
+            int currentId = getCurrentUserId.CurrentId;
+            allergyPatient = fairfieldAllergeryRepository.GetListOfNewUsers(currentId.ToString());
+
+
+            for (int i = 0; i < allergyPatient.Count; i++)
+            {
+                Console.WriteLine("Processing record " + i.ToString());
+
+                string userID = generator.RandomString(10, false);
+
+                string password = generator.RandomPassword();
+
+                fairfieldAllergeryRepository.CreateNewUser(allergyPatient[i], userID, password);
+
+                string sex = string.Empty;
+                if (allergyPatient[i].gender == 1)
+                {
+                    sex = "M";
+                }
+                else if (allergyPatient[i].gender == 2)
+                {
+                    sex = "F";
+                }
+
+                RegisterViewModel registerViewModel = new RegisterViewModel();
+
+                registerViewModel.Email = allergyPatient[i].first_name;
+
+                registerViewModel.FirstName = allergyPatient[i].first_name;
+                registerViewModel.LastName = allergyPatient[i].last_name;
+                registerViewModel.HomePhone = allergyPatient[i].home_phone;
+                registerViewModel.Sex = sex;
+                registerViewModel.DateOfBirth = allergyPatient[i].birthday.ToShortDateString();
+
+                registerViewModel.UserName = userID;
+                registerViewModel.Password = password;
+                registerViewModel.ConfirmPassword = password;
+
+                var json = JsonConvert.SerializeObject(registerViewModel);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var url = ConfigurationValues.RegisterUrl;
+                using var client = new HttpClient();
+
+                var response = await client.PostAsync(url, data);
+
+                string jsonResult = response.Content.ReadAsStringAsync().Result;
+
+                var result = JsonConvert.DeserializeObject<Status>(jsonResult);
+
+                Console.WriteLine(result);
+
+                currentId = allergyPatient[i].pkid;
+            }
+
+            if (allergyPatient.Count > 0)
+            {
+                fairfieldAllergeryRepository.UpdateUserId(currentId++);
+            }
+            else
+            {
+                Console.WriteLine("No records to process");
+            }
+
+            //SQL Access Info
+            //ID: walden
+            //PW: Db#rd!927!Mz
+            //DB Name: RoschIT
+            //172.16.1.13
+
+            //Thread.Sleep(3600000);
+
+            timer.Start();
+        }
+
+        public class RandomNumberGenerator
+        {
+            // Generate a random number between two numbers    
+            public int RandomNumber(int min, int max)
+            {
+                Random random = new Random();
+                return random.Next(min, max);
+            }
+
+            // Generate a random string with a given size and case.   
+            // If second parameter is true, the return string is lowercase  
+            public string RandomString(int size, bool lowerCase)
+            {
+                StringBuilder builder = new StringBuilder();
+                Random random = new Random();
+                char ch;
+                for (int i = 0; i < size; i++)
+                {
+                    ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
+                    builder.Append(ch);
+                }
+                if (lowerCase)
+                    return builder.ToString().ToLower();
+                return builder.ToString();
+            }
+
+            // Generate a random password of a given length (optional)  
+            public string RandomPassword(int size = 0)
+            {
+                StringBuilder builder = new StringBuilder();
+                builder.Append(RandomString(4, true));
+                builder.Append(RandomNumber(1000, 9999));
+                builder.Append(RandomString(2, false));
+                return builder.ToString();
+            }
+        }
+
+    }//end of class 
+}
+
