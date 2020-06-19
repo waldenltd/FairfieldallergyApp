@@ -295,3 +295,6 @@ C:\OneDriveForBusiness Files\OneDrive - Walden Associates LTD\Desktop\waldenltd\
 C:\OneDriveForBusiness Files\OneDrive - Walden Associates LTD\Desktop\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Api\bin\Release\netcoreapp3.1\MailKit.dll
 C:\OneDriveForBusiness Files\OneDrive - Walden Associates LTD\Desktop\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Api\bin\Release\netcoreapp3.1\MimeKit.dll
 C:\OneDriveForBusiness Files\OneDrive - Walden Associates LTD\Desktop\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Api\bin\Release\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Api\bin\Release\netcoreapp3.1\MailKit.dll
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Api\bin\Release\netcoreapp3.1\MimeKit.dll
+C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Api\bin\Release\netcoreapp3.1\BouncyCastle.Crypto.dll

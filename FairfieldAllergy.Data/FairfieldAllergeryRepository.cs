@@ -51,7 +51,7 @@ namespace FairfieldAllergy.Data
                 + " inner join [Appointment].[BroadcastMessageRead] B"
                 + " on B.BroadcastMessageId = A.Id"
                 + " where B.UserId = @UserId"
-                +  location;
+                + location;
 
                 using (SqlConnection db = new SqlConnection(ConfigurationValues.FairfieldAllergyConnection))
                 {
@@ -473,6 +473,40 @@ namespace FairfieldAllergy.Data
                 + " where B.locationid not in (-1)"
                 + " and B.lastname not like '%zz%'"
                 + " and B.id NOT IN (3337,3500,3696,3703,3772,3943,3973,4405,5132,5398,5517,5685,5689,5855,6112)"
+                + " order by B.lastname";
+
+                using (SqlConnection db = new SqlConnection(ConfigurationValues.FairfieldAllergyConnection))
+                {
+                    operationResult.Patient = db.Query<Patient>(Query).ToList();
+                    operationResult.Success = true;
+                    operationResult.ErrorMessage = "None";
+                    return operationResult;
+                }
+            }
+            catch (Exception er)
+            {
+                operationResult.Success = false;
+                operationResult.ErrorMessage = er.ToString();
+                return operationResult;
+            }
+        }
+
+        public OperationResult GetPatients(string filter)
+        {
+            OperationResult operationResult = new OperationResult();
+            List<Patient> patients = new List<Patient>();
+
+            try
+            {
+                Query = " select B.Id as Id, LTRIM(RTRIM(B.firstname)) + ' ' + LTRIM(RTRIM(B.lastname)) as PatientName,"
+                + " B.locationid as PatientLocation, A.ID as PatientWebId "
+                + " from WEBID A"
+                + " INNER JOIN Person B"
+                + " ON A.PersonID = B.ID"
+                + " where B.locationid not in (-1)"
+                + " and B.lastname not like '%zz%'"
+                + " and B.id NOT IN (3337,3500,3696,3703,3772,3943,3973,4405,5132,5398,5517,5685,5689,5855,6112)"
+                + " and LTRIM(RTRIM(B.firstname)) + ' ' + LTRIM(RTRIM(B.lastname)) LIKE '%" + filter + "%'"
                 + " order by B.lastname";
 
                 using (SqlConnection db = new SqlConnection(ConfigurationValues.FairfieldAllergyConnection))

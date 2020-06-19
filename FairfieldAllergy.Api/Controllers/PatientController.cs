@@ -13,14 +13,14 @@ namespace FairfieldAllergy.Api.Controllers
     public class PatientController : ControllerBase
     {
         // GET: api/Patient
-        [HttpGet(Name = "GetPatients")]
+        [HttpGet("{parametersString}", Name="GetPatients")]        
         public IActionResult Get(string parametersString)
         {
             OperationResult operationResult = new OperationResult();
 
             FairfieldAllergeryRepository fairfieldAllergeryRepository = new FairfieldAllergeryRepository();
 
-            operationResult = fairfieldAllergeryRepository.GetPatients();
+            operationResult = fairfieldAllergeryRepository.GetPatients(parametersString);
 
             if (operationResult.Success)
             {
