@@ -22,6 +22,126 @@ namespace FairfieldAllergy.Data
             SqlForError = string.Empty;
         }
 
+        public List<BroadcastMessage> GetBroadcastMessage(string userId, string location)
+        {
+            OperationResult operationResult = new OperationResult();
+            List<BroadcastMessage> broadcastMessageHeard = new List<BroadcastMessage>();
+            List<BroadcastMessage> broadcastMessage = new List<BroadcastMessage>();
+
+            if (location == "1")
+            {
+                location = " and A.Norwalk = 'true'";
+            }
+            else if (location == "2")
+            {
+                location = " and A.Greenwich = 'true'";
+            }
+            else if (location == "3")
+            {
+                location = " and A.Stamford = 'true'";
+            }
+            else if (location == "5")
+            {
+                location = " and A.Ridgefield = 'true'";
+            }
+
+            try
+            {
+                Query = "SELECT A.Id  FROM [Appointment].[BroadcastMessage] A"
+                + " inner join [Appointment].[BroadcastMessageRead] B"
+                + " on B.BroadcastMessageId = A.Id"
+                + " where B.UserId = @UserId"
+                +  location;
+
+                using (SqlConnection db = new SqlConnection(ConfigurationValues.FairfieldAllergyConnection))
+                {
+                    broadcastMessageHeard = db.Query<BroadcastMessage>(Query, new
+                    {
+                        @UserId = userId
+
+                    }).ToList();
+                    //   return allergyPatient;
+                }
+            }
+            catch (Exception er)
+            {
+                // return allergyPatient;
+            }
+
+            string listOfSeenBroadcastMessages = string.Empty;
+
+            if (broadcastMessageHeard.Count > 0)
+            {
+                listOfSeenBroadcastMessages = "(";
+
+                for (int i = 0; i < broadcastMessageHeard.Count; i++)
+                {
+                    listOfSeenBroadcastMessages = listOfSeenBroadcastMessages + broadcastMessageHeard[i].Id.ToString() + ",";
+                }
+
+                listOfSeenBroadcastMessages = listOfSeenBroadcastMessages.Substring(0, listOfSeenBroadcastMessages.Length - 1);
+
+                listOfSeenBroadcastMessages = listOfSeenBroadcastMessages + ")";
+            }
+            else
+            {
+                listOfSeenBroadcastMessages = "(0)";
+            }
+
+            string s2 = string.Empty;
+            try
+            {
+                Query = "SELECT A.Message, A.Id FROM [Appointment].[BroadcastMessage] A"
+                + " where A.Id NOT IN " + listOfSeenBroadcastMessages
+                + location;
+
+                using (SqlConnection db = new SqlConnection(ConfigurationValues.FairfieldAllergyConnection))
+                {
+                    broadcastMessage = db.Query<BroadcastMessage>(Query).ToList();
+                }
+            }
+            catch (Exception er)
+            {
+                string s1 = er.ToString();
+                // return allergyPatient;
+            }
+
+            for (int j = 0; j < broadcastMessage.Count; j++)
+            {
+                UpdateViewedBroadcastMessage(userId, broadcastMessage[j].Id.ToString());
+
+            }
+
+            return broadcastMessage;
+        }
+
+        public void UpdateViewedBroadcastMessage(string userId, string broadcastMessageId)
+        {
+            int rowsAffected = 0;
+            using (IDbConnection db = new SqlConnection(ConfigurationValues.FairfieldAllergyConnection))
+            {
+                try
+                {
+                    Query = "INSERT INTO [Appointment].[BroadcastMessageRead]"
+                    + " ([BroadcastMessageId],[UserId],[DateShown])"
+                    + " VALUES("
+                    + " @BroadcastMessageId,@UserId,@DateShown)";
+
+                    rowsAffected = db.Execute(Query, new
+                    {
+
+                        @BroadcastMessageId = broadcastMessageId,
+                        @UserId = userId,
+                        @DateShown = DateTime.Now
+                    });
+                }
+                catch (Exception er)
+                {
+                    string s1 = er.ToString();
+                }
+            }
+        }
+
         public OperationResult UpdateUserName(string oldUserName, string newUserName, string password)
         {
             OperationResult operationResult = new OperationResult();
@@ -110,7 +230,46 @@ namespace FairfieldAllergy.Data
             }
         }
 
+        public void AddBroadcastMessage(BroadcastMessage broadcastMessage)
+        {
 
+            OperationResult operationResult = new OperationResult();
+            int rowsAffected = 0;
+
+            using (IDbConnection db = new SqlConnection(ConfigurationValues.FairfieldAllergyConnection))
+            {
+                try
+                {
+
+                    Query = "INSERT INTO [Appointment].[BroadcastMessage] ([Message],[DateCreated]"
+                    + " ,[Norwalk],[Greenwich],[Stamford],[Ridgefield])"
+                    + " VALUES("
+                    + " @Message,@DateCreated,@Norwalk,@Greenwich,@Stamford,@Ridgefield"
+                    + ")";
+
+                    rowsAffected = db.Execute(Query, new
+                    {
+                        @Message = broadcastMessage.Message,
+                        @DateCreated = DateTime.Now,
+                        @Norwalk = broadcastMessage.Norwalk,
+                        @Greenwich = broadcastMessage.Greenwich,
+                        @Stamford = broadcastMessage.Stamford,
+                        @Ridgefield = broadcastMessage.Ridgefield
+
+                    });
+
+                    operationResult.Success = true;
+                    operationResult.ErrorMessage = "Success";
+                    //return operationResult;
+                }
+                catch (Exception er)
+                {
+                    operationResult.Success = false;
+                    operationResult.ErrorMessage = er.ToString();
+                    //return operationResult;
+                }
+            }
+        }
         public void CreateNewUser(AllergyPatient allergyPatient, string userId, string password)
         {
 
