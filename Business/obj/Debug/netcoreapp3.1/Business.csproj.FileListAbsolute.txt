@@ -1,12 +1,3 @@
-C:\waldenltd\FairfieldAllergyApp\Business\bin\Debug\netcoreapp3.1\Business.deps.json
-C:\waldenltd\FairfieldAllergyApp\Business\bin\Debug\netcoreapp3.1\Business.dll
-C:\waldenltd\FairfieldAllergyApp\Business\bin\Debug\netcoreapp3.1\Business.pdb
-C:\waldenltd\FairfieldAllergyApp\Business\obj\Debug\netcoreapp3.1\Business.csproj.CoreCompileInputs.cache
-C:\waldenltd\FairfieldAllergyApp\Business\obj\Debug\netcoreapp3.1\Business.AssemblyInfoInputs.cache
-C:\waldenltd\FairfieldAllergyApp\Business\obj\Debug\netcoreapp3.1\Business.AssemblyInfo.cs
-C:\waldenltd\FairfieldAllergyApp\Business\obj\Debug\netcoreapp3.1\Business.dll
-C:\waldenltd\FairfieldAllergyApp\Business\obj\Debug\netcoreapp3.1\Business.pdb
-C:\waldenltd\FairfieldAllergyApp\Business\obj\Debug\netcoreapp3.1\Business.csprojAssemblyReference.cache
 X:\Desktop\waldenltd\FairfieldAllergyApp\Business\obj\Debug\netcoreapp3.1\Business.csprojAssemblyReference.cache
 X:\Desktop\waldenltd\FairfieldAllergyApp\Business\obj\Debug\netcoreapp3.1\Business.csproj.GenerateResource.cache
 X:\Desktop\waldenltd\FairfieldAllergyApp\Business\obj\Debug\netcoreapp3.1\Business.dll
@@ -20,3 +11,12 @@ C:\OneDriveForBusiness Files\OneDrive - Walden Associates LTD\Desktop\waldenltd\
 C:\OneDriveForBusiness Files\OneDrive - Walden Associates LTD\Desktop\waldenltd\FairfieldAllergyApp\Business\obj\Debug\netcoreapp3.1\Business.dll
 C:\OneDriveForBusiness Files\OneDrive - Walden Associates LTD\Desktop\waldenltd\FairfieldAllergyApp\Business\obj\Debug\netcoreapp3.1\Business.pdb
 C:\OneDriveForBusiness Files\OneDrive - Walden Associates LTD\Desktop\waldenltd\FairfieldAllergyApp\Business\obj\Debug\netcoreapp3.1\Business.csprojAssemblyReference.cache
+C:\waldenltd\FairfieldAllergyApp\Business\bin\Debug\netcoreapp3.1\Business.deps.json
+C:\waldenltd\FairfieldAllergyApp\Business\bin\Debug\netcoreapp3.1\Business.dll
+C:\waldenltd\FairfieldAllergyApp\Business\bin\Debug\netcoreapp3.1\Business.pdb
+C:\waldenltd\FairfieldAllergyApp\Business\obj\Debug\netcoreapp3.1\Business.AssemblyInfoInputs.cache
+C:\waldenltd\FairfieldAllergyApp\Business\obj\Debug\netcoreapp3.1\Business.AssemblyInfo.cs
+C:\waldenltd\FairfieldAllergyApp\Business\obj\Debug\netcoreapp3.1\Business.csproj.CoreCompileInputs.cache
+C:\waldenltd\FairfieldAllergyApp\Business\obj\Debug\netcoreapp3.1\Business.dll
+C:\waldenltd\FairfieldAllergyApp\Business\obj\Debug\netcoreapp3.1\Business.pdb
+C:\waldenltd\FairfieldAllergyApp\Business\obj\Debug\netcoreapp3.1\Business.csprojAssemblyReference.cache

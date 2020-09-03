@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
 
 namespace FairfieldAllergy.Data
 {
@@ -20,6 +19,130 @@ namespace FairfieldAllergy.Data
         {
             Query = string.Empty;
             SqlForError = string.Empty;
+        }
+
+        public OperationResult AddFamilyAccount(FamilyAccount familyAccount)
+        {
+            OperationResult operationResult = new OperationResult();
+            int count = 0;
+
+            try
+            {
+                Query = "SELECT count(*) FROM [Appointment].[family_accounts]"
+                + " where main_account = @main_account"
+                + " and added_account = @added_account";
+
+                using (SqlConnection db = new SqlConnection(ConfigurationValues.FairfieldAllergyConnection))
+                {
+                    count = db.Query<int>(Query, new
+                    {
+                        @main_account = familyAccount.MainAccount,
+                        @added_account = familyAccount.AddedAccount
+
+                    }).Single();
+                    //   return allergyPatient;
+                }
+            }
+            catch (Exception er)
+            {
+                // return allergyPatient;
+            }
+
+            if (count < 1)
+            {
+
+                using (IDbConnection db = new SqlConnection(ConfigurationValues.FairfieldAllergyConnection))
+                {
+                    try
+                    {
+                        Query = "INSERT INTO [Appointment].[family_accounts]"
+                        + " ([main_account],[added_account],[date_added])"
+                        + " VALUES("
+                        + " @main_account, @added_account,@date_added"
+                        + " )";
+
+                        count = db.Execute(Query, new
+                        {
+                            @main_account = familyAccount.MainAccount,
+                            @added_account = familyAccount.AddedAccount,
+                            @date_added = DateTime.Now
+                        });
+
+                        operationResult.Success = true;
+                        operationResult.ErrorMessage = "None";
+                        return operationResult;
+                    }
+                    catch (Exception er)
+                    {
+                        operationResult.Success = false;
+                        operationResult.ErrorMessage = er.ToString();
+                        return operationResult;
+                    }
+                }
+            }
+            else
+            {
+                operationResult.Success = false;
+                operationResult.ErrorMessage = "Account Already Created";
+                return operationResult;
+
+            }
+        }
+
+        public void UpdateEmail(string id, string email)
+        {
+
+            int rowsAffected = 0;
+
+            using (IDbConnection db = new SqlConnection(ConfigurationValues.FairfieldAllergyConnection))
+            {
+                try
+                {
+                    Query = " update [Appointment].[Appointment].[Person]"
+                        + " set email = @email"
+                        + " where id = @id";
+
+                    rowsAffected = db.Execute(Query, new
+                    {
+                        @email = email,
+                        @id = id
+                    });
+                }
+                catch (Exception er)
+                {
+                    string s1 = er.ToString();
+                }
+            }
+        }
+
+        public OperationResult GetFamilyAccount(int mainAccount)
+        {
+            OperationResult operationResult = new OperationResult();
+
+            try
+            {
+                Query = " select C.Id as Id, LTRIM(RTRIM(C.firstname)) + ' ' + LTRIM(RTRIM(C.lastname)) as PatientName,"
+                + " C.locationid as PatientLocation, B.ID as PatientWebId "
+                + " FROM [Appointment].[Appointment].[family_accounts] A"
+                + " inner join [Appointment].WEBID B"
+                + " on A.added_account = B.ID"
+                + " inner join [Appointment].Person C"
+                + " on B.PersonID = C.ID"
+                + " Where A.main_account = @ID";
+
+                using (SqlConnection db = new SqlConnection(ConfigurationValues.FairfieldAllergyConnection))
+                {
+                    operationResult.Patient = db.Query<Patient>(Query, new
+                    {
+                        @ID = mainAccount.ToString()
+                    }).ToList();
+                }
+            }
+            catch (Exception er)
+            {
+                // return allergyPatient;
+            }
+            return operationResult;
         }
 
         public List<BroadcastMessage> GetBroadcastMessage(string userId, string location)
@@ -151,7 +274,7 @@ namespace FairfieldAllergy.Data
             {
                 try
                 {
-                    Query = "update WEBID"
+                    Query = "update Appointment.WEBID"
                        + " set UID = @NewUID"
                        + " where UID = @OldUID";
 
@@ -182,7 +305,7 @@ namespace FairfieldAllergy.Data
 
             try
             {
-                Query = "SELECT [current_pkid] FROM [CurrentPkid]";
+                Query = "SELECT [current_pkid] FROM Appointment.[CurrentPkid]";
 
                 using (SqlConnection db = new SqlConnection(ConfigurationValues.FairfieldAllergyConnection))
                 {
@@ -209,7 +332,7 @@ namespace FairfieldAllergy.Data
             {
                 try
                 {
-                    Query = "update [CurrentPkid]"
+                    Query = "update Appointment.[CurrentPkid]"
                        + " set current_pkid = @current_pkid";
 
                     rowsAffected = db.Execute(Query, new
@@ -291,7 +414,7 @@ namespace FairfieldAllergy.Data
                 try
                 {
                     Query = "DECLARE @InsertedRows AS TABLE(Id int);"
-                        + "INSERT INTO [Person]([FirstName],[LastName],[DOB],[Sex],[HPhone]"
+                        + "INSERT INTO Appointment.[Person]([FirstName],[LastName],[DOB],[Sex],[HPhone]"
                         + " ,[EMail],[LocationID],[first_appointment],[venom_patient],[sendemail],[sendlate]"
                         + " ,[sendnone],[NotificationID],[patientid]) OUTPUT Inserted.Id INTO @InsertedRows VALUES("
                         + " @FirstName,@LastName,@DOB,@Sex,@HPhone,@EMail,@LocationID,@first_appointment,@venom_patient,"
@@ -334,7 +457,7 @@ namespace FairfieldAllergy.Data
                 try
                 {
 
-                    Query = "INSERT INTO [WEBID]([PersonID],[pkid],[digi_account],[UID],[PWD],[HINTTYPE],[HINTVALUE])"
+                    Query = "INSERT INTO Appointment.[WEBID]([PersonID],[pkid],[digi_account],[UID],[PWD],[HINTTYPE],[HINTVALUE])"
                         + " VALUES("
                         + " @PersonID,@pkid, @digi_account, @UID,@PWD,@HINTTYPE,@HINTVALUE)";
 
@@ -406,7 +529,7 @@ namespace FairfieldAllergy.Data
             {
                 try
                 {
-                    Query = "update appointmentslots"
+                    Query = "update Appointment.appointmentslots"
                        + " set NumberSlots = @NumberSlots"
                        + " where SlotId = @SlotId";
 
@@ -436,7 +559,7 @@ namespace FairfieldAllergy.Data
 
             try
             {
-                Query = " select Uid as PatientUserId, Pwd as PatientPassword from WEBID"
+                Query = " select Uid as PatientUserId, Pwd as PatientPassword from Appointment.WEBID"
                 + " where personid = @Personid";
 
                 using (SqlConnection db = new SqlConnection(ConfigurationValues.FairfieldAllergyConnection))
@@ -467,8 +590,8 @@ namespace FairfieldAllergy.Data
             {
                 Query = " select B.Id as Id, LTRIM(RTRIM(B.firstname)) + ' ' + LTRIM(RTRIM(B.lastname)) as PatientName,"
                 + " B.locationid as PatientLocation, A.ID as PatientWebId "
-                + " from WEBID A"
-                + " INNER JOIN Person B"
+                + " from Appointment.WEBID A"
+                + " INNER JOIN Appointment.Person B"
                 + " ON A.PersonID = B.ID"
                 + " where B.locationid not in (-1)"
                 + " and B.lastname not like '%zz%'"
@@ -500,8 +623,8 @@ namespace FairfieldAllergy.Data
             {
                 Query = " select B.Id as Id, LTRIM(RTRIM(B.firstname)) + ' ' + LTRIM(RTRIM(B.lastname)) as PatientName,"
                 + " B.locationid as PatientLocation, A.ID as PatientWebId "
-                + " from WEBID A"
-                + " INNER JOIN Person B"
+                + " from Appointment.WEBID A"
+                + " INNER JOIN Appointment.Person B"
                 + " ON A.PersonID = B.ID"
                 + " where B.locationid not in (-1)"
                 + " and B.lastname not like '%zz%'"
@@ -540,7 +663,7 @@ namespace FairfieldAllergy.Data
                     //+ " CONVERT(varchar, [ApptDay], 101) as DateOfAppointment,CONVERT(varchar, [ApptTime], 108) as TimeOfAppointment,"
                     + " CONVERT(varchar, [ApptDay], 101) as DateOfAppointment,CONVERT(varchar(15), CAST([ApptTime] AS TIME), 100) as TimeOfAppointment,"
                     + " CONVERT(varchar, person.DOB, 101) as DateOfBirth, '0' as Account "
-                    + " FROM Appointment"
+                    + " FROM Appointment.Appointment"
                     + " inner join webid"
                     + " on webid.ID = appointment.UserID"
                     + " inner join person"
@@ -557,15 +680,27 @@ namespace FairfieldAllergy.Data
                         @locationId = location
                     }).ToList();
 
-                    operationResult.AllergyPatientAppointments = allergyPatientAppointmentsList;
-                    operationResult.Success = true;
-                    operationResult.ErrorMessage = "None";
-                    return operationResult;
+                    if (allergyPatientAppointmentsList.Count > 0)
+                    {
+
+                        operationResult.AllergyPatientAppointments = allergyPatientAppointmentsList;
+                        operationResult.Success = true;
+                        operationResult.ErrorMessage = "None";
+                    }
+                    else
+                    {
+                        operationResult.AllergyPatientAppointments = allergyPatientAppointmentsList;
+                        operationResult.Success = false;
+                        operationResult.ErrorMessage = "None";
+
+                    }
                 }
             }
             catch (Exception er)
             {
-                //SerilogLogError.LogErrorToFile(er.ToString());
+                operationResult.Success = false;
+                operationResult.ErrorMessage = er.ToString();
+
             }
             return operationResult;
         }
@@ -582,7 +717,7 @@ namespace FairfieldAllergy.Data
                     //+ " CAST(SlotTime AS TIME), 100) as SlotTime,"
                     + " CONVERT(varchar(15), CAST([SlotTime] AS TIME), 100),"
                     + " Block"
-                    + " FROM [AppointmentSlots]"
+                    + " FROM Appointment.[AppointmentSlots]"
                     + " where SlotDate = @SlotDate"
                     + " AND LocationID = @LocationId"
                     + " Order by SlotDate, SlotTime";
@@ -625,7 +760,7 @@ namespace FairfieldAllergy.Data
                         //cm.CommandText = "Select  A.SlotId,A.LocationID,A.AppointmentTypeID,A.NumberSlots,A.SlotDate,A.SlotTime from appointmentslots A"
                         cm.CommandText = "select A.SlotId as SlotId,A.LocationID,A.AppointmentTypeID,A.NumberSlots,A.SlotDate,A.SlotTime,"
                             + " A.Block,A.AddId,A.num_slots_wi,A.num_slots_ol "
-                            + " from appointmentslots A"
+                            + " from Appointment.appointmentslots A"
                             + " where A.slotdate = @SlotDate"
                             + " and A.numberslots > (select count(ID) from appointment B"
                             + " where B.apptday = @SlotDate"
@@ -642,11 +777,14 @@ namespace FairfieldAllergy.Data
                         {
                             while (dr.Read())
                             {
+                                //8:00 am on July 2, 2020 is available 
                                 appointment = new OpenAppointment();
-                                appointment.AppointmentDescription = "Appt on "
-                                    + dr.GetDateTime(4).ToShortDateString().Replace("/", "-")
-                                    + " at "
-                                    + dr.GetDateTime(5).ToShortTimeString();
+                                appointment.AppointmentDescription = dr.GetDateTime(5).ToShortTimeString()
+                                + " on " + dr.GetDateTime(4).ToShortDateString().Replace("/", "-")
+                                + " is available ";
+                                //+ dr.GetDateTime(4).ToShortDateString().Replace("/", "-")
+                                //;;+ " at "
+                                //;;+ dr.GetDateTime(5).ToShortTimeString();
                                 appointment.SlotID = int.Parse(dr["SlotId"].ToString());
                                 appointments.Add(appointment);
                             }
@@ -682,14 +820,14 @@ namespace FairfieldAllergy.Data
                 Query = " select A.SlotId as SlotId,A.LocationID,A.AppointmentTypeID,A.NumberSlots,"
                     + " CONVERT(varchar, [SlotDate], 101) as SlotDate,"
                     + " CONVERT(varchar(15), CAST([SlotTime] AS TIME), 100) as SlotTime,"
-                    + " 0 as NewSlotNumber,"
+                    + " -1 as NewSlotNumber,"
                     + " A.Block,A.AddId,A.num_slots_wi,A.num_slots_ol "
-                    + " from appointmentslots A"
+                    + " from Appointment.appointmentslots A"
                     + " where A.slotdate = @SlotDate"
-                    + " and A.numberslots > (select count(ID) from appointment B"
-                    + " where B.apptday = @SlotDate"
-                    + " and B.slotnumber = A.slotid"
-                    + " and B.location = @Location)"
+                    //+ " and A.numberslots > (select count(ID) from appointment B"
+                    //+ " where B.apptday = @SlotDate"
+                    //+ " and B.slotnumber = A.slotid"
+                    //+ " and B.location = @Location)"
                     + " AND A.Block = 'N'"
                     + " and A.locationid = @Location"
                     + " order by A.slotid";
@@ -719,88 +857,6 @@ namespace FairfieldAllergy.Data
             }
         }
 
-
-        public int GetReviewProvider(string id)
-        {
-            int surgicalBookingId = 0;
-
-            try
-            {
-                Query = "SELECT Provider From SurgicalBookings"
-                    + " where ID = @ID";
-                using (SqlConnection db = new SqlConnection(ConfigurationValues.SurgicalBookingConnection))
-                {
-                    surgicalBookingId = db.Query<int>(Query, new
-                    {
-                        @id = id
-                    }).Single();
-                }
-            }
-            catch (Exception er)
-            {
-                //SerilogLogError.LogErrorToFile(er.ToString());
-            }
-            return surgicalBookingId;
-        }
-
-        public OperationResult GetFaxHistory()
-        {
-            OperationResult operationResult = new OperationResult();
-
-            try
-            {
-                Query = "SELECT [Id],[FaxSid],[FaxName],[ToNumber],CONVERT(varchar, [DateSent], 0) as DateSent,[SuccessfullySent]"
-                    + "FROM [FaxesSent]";
-
-                using (SqlConnection db = new SqlConnection(ConfigurationValues.SurgicalBookingConnection))
-                {
-                    //  operationResult.FaxHistoryList = db.Query<FaxHistory>(Query).ToList();
-
-                    operationResult.Success = true;
-                    operationResult.ErrorMessage = "None";
-                    return operationResult;
-                }
-            }
-            catch (Exception er)
-            {
-                //SerilogLogError.LogErrorToFile(er.ToString());
-                operationResult.Success = false;
-                operationResult.ErrorMessage = er.ToString();
-                return operationResult;
-            }
-        }
-
-        public void FaxSent(string sid, string faxName, string toNumber)
-        {
-            int rowsAffected = 0;
-
-            using (IDbConnection db = new SqlConnection(ConfigurationValues.SurgicalBookingConnection))
-            {
-                try
-                {
-                    Query = "INSERT INTO [FaxesSent]"
-                    + " ("
-                    + " [FaxSid],[FaxName],[ToNumber],[DateSent],[SuccessfullySent])"
-                    + " VALUES"
-                    + " ("
-                    + "@FaxSid,@FaxName,@ToNumber,@DateSent,@SuccessfullySent)";
-
-                    rowsAffected = db.Execute(Query, new
-                    {
-                        @FaxSid = sid,
-                        @FaxName = faxName,
-                        @ToNumber = toNumber,
-                        @DateSent = DateTime.Now,
-                        @SuccessfullySent = "Sending"
-                    });
-                }
-                catch (Exception er)
-                {
-                    //SerilogLogError.LogErrorToFile(er.ToString());
-                }
-            }
-        }
-
         public OperationResult DeleteAppointment(string appointmentID)
         {
             OperationResult operationResult = new OperationResult();
@@ -810,7 +866,7 @@ namespace FairfieldAllergy.Data
             {
                 try
                 {
-                    Query = "DELETE FROM Appointment"
+                    Query = "DELETE FROM Appointment.Appointment"
                         + " where id = @id";
                     rowsAffected = db.Execute(Query, new
                     {
@@ -829,44 +885,6 @@ namespace FairfieldAllergy.Data
             }
         }
 
-        public OperationResult GetInsuranceByPatientMrn(string patientMrn)
-        {
-            OperationResult operationResult = new OperationResult();
-
-            List<string> insuranceList = new List<string>();
-            try
-            {
-                Query = "SELECT[Id],[PatientMRN],[InsuranceId],[InsuranceName],[InsuranceMemberId],[InsuranceSubscriberId],[InsuranceGroupId][InsuranceCompanyID]"
-                   + " ,[InsuranceCompanyAddress],[InsuranceCompanyCity],[InsuranceCompanyState]"
-                   + " ,[InsuranceCompanyZip],[InsuranceCoPhoneNumber],[InsuranceCoFaxNumber]"
-                   + " ,[InsuranceNameOfInsuredLastName],[InsuranceNameOfInsuredFirstName],[InsuranceInsuredsDateOfBirth]"
-                   + " ,[InsuranceInsuredsSocialSecurityNumber],[InsuranceInsuredsEmployersNameandID]"
-                   + " ,[Name],[IdentificationGroup],[Address],[Phone],[Fax],[InsuredPartyName],[DOB]"
-                   + " ,[SSN]"
-                   + " FROM [Insurance]"
-                   + " where [PatientMRN] = @PatientMRN";
-
-                using (SqlConnection db = new SqlConnection(ConfigurationValues.SurgicalBookingConnection))
-                {
-                    //operationResult.InsuranceList = db.Query<Insurance>(Query, new
-                    //{
-                    //    @PatientMRN = patientMrn
-                    //}).ToList();
-
-                    operationResult.Success = true;
-                    operationResult.ErrorMessage = "None";
-                    return operationResult;
-                }
-            }
-            catch (Exception er)
-            {
-                //SerilogLogError.LogErrorToFile(er.ToString());
-                operationResult.Success = false;
-                operationResult.ErrorMessage = er.ToString();
-                return operationResult;
-            }
-        }
-
         public UserInformation GetUserInformation(string userName)
         {
             UserInformation userInformation = new UserInformation();
@@ -876,8 +894,8 @@ namespace FairfieldAllergy.Data
                 Query = " SELECT WEBID.ID as UserId,[AspNetUsers].[Id],[AspNetUsers].[UserName],[AspNetUsers].[Email],"
                     + " [AspNetUsers].[PhoneNumber],[AspNetUsers].[City],[AspNetUsers].[FirstName],[AspNetUsers].[LastName],"
                     + " [AspNetUsers].[DateOfBirth],[AspNetUsers].[Sex],[AspNetUsers].[HomePhone],[AspNetUsers].[location]"
-                    + " FROM [AspNetUsers]"
-                    + " inner join WEBID"
+                    + " FROM Appointment.[AspNetUsers]"
+                    + " inner join Appointment.WEBID"
                     + " on WEBID.UID = [AspNetUsers].UserName"
                     + " where [UserName] = @UserName";
 
@@ -913,7 +931,7 @@ namespace FairfieldAllergy.Data
             {
                 try
                 {
-                    Query = "update Person"
+                    Query = "update Appointment.Person"
                        + " set LocationId = @locationId"
                        + " where Id = @Id";
 
@@ -949,7 +967,7 @@ namespace FairfieldAllergy.Data
                     cn.Open();
                     using (SqlCommand cm = cn.CreateCommand())
                     {
-                        cm.CommandText = "INSERT INTO Appointment(UserID,ApptDay,ApptTime,Location,SlotNumber)VALUES("
+                        cm.CommandText = "INSERT INTO Appointment.Appointment(UserID,ApptDay,ApptTime,Location,SlotNumber)VALUES("
                             + "@UserID,@ApptDay,@ApptTime,@Location,@SlotNumbersID)";
                         cm.CommandType = System.Data.CommandType.Text;
                         cm.Parameters.AddWithValue("@UserID", userID);
@@ -987,7 +1005,7 @@ namespace FairfieldAllergy.Data
                     {
 
                         cm.CommandText = "SELECT [ID],[UserID],[ApptDay],[ApptTime],[ApptointType],[Location],[SlotNumber]"
-                            + " FROM [Appointment]"
+                            + " FROM Appointment.[Appointment]"
                             + " where UserID = @UserID"
                             + "  order by apptday desc";
 
@@ -1028,7 +1046,7 @@ namespace FairfieldAllergy.Data
                 Query = " SELECT [ID] as Id ,[UserID],"
                     + " CONVERT(varchar, [ApptDay], 101) as AppointmentDate,CONVERT(varchar(15), CAST([ApptTime] AS TIME), 100) as AppointmentTime,"
                     + " [ApptointType],[Location],[SlotNumber]"
-                    + " FROM [Appointment]"
+                    + " FROM Appointment.[Appointment]"
                     + " where UserID = @UserID"
                     + "  order by apptday desc";
 
@@ -1041,8 +1059,7 @@ namespace FairfieldAllergy.Data
 
                     for (int i = 0; i < appointments.Count; i++)
                     {
-                        appointments[i].AppointmentDescription = "Appt on "
-                                    + appointments[i].AppointmentDate
+                        appointments[i].AppointmentDescription = appointments[i].AppointmentDate
                                     + " at "
                                     + appointments[i].AppointmentTime;
 
@@ -1074,7 +1091,7 @@ namespace FairfieldAllergy.Data
                 Query = " SELECT [ID] as Id ,[UserID],"
                     + " CONVERT(varchar, [ApptDay], 101) as AppointmentDate,CONVERT(varchar(15), CAST([ApptTime] AS TIME), 100) as AppointmentTime,"
                     + " [ApptointType],[Location],[SlotNumber]"
-                    + " FROM [Appointment]"
+                    + " FROM Appointment.[Appointment]"
                     + " where UserID = @UserID"
                     + " and [ApptDay] > @TodaysDate"
                     + "  order by apptday desc";
@@ -1119,7 +1136,7 @@ namespace FairfieldAllergy.Data
             {
                 Query = " select A.UID as PatientUserId, A.PWD as PatientPassword, B.Id as Id, LTRIM(RTRIM(B.firstname)) + ' ' + LTRIM(RTRIM(B.lastname)) as PatientName,"
                 + " B.locationid as PatientLocation, A.ID as PatientWebId "
-                + " from Appointment.WEBID A"
+                + " from Appointment.Appointment.WEBID A"
                 + " INNER JOIN Appointment.Person B"
                 + " ON A.PersonID = B.ID"
                 + " where B.Id = @Id";
@@ -1140,9 +1157,9 @@ namespace FairfieldAllergy.Data
                 string s1 = er.ToString();
             }
 
+            //operationResult.Patient
+
             return patients;
         }
-
-
     }
 }

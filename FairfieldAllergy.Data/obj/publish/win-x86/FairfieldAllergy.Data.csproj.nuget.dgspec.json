@@ -10,17 +10,12 @@
         "projectUniqueName": "C:\\waldenltd\\FairfieldAllergyApp\\Business\\Business.csproj",
         "projectName": "Business",
         "projectPath": "C:\\waldenltd\\FairfieldAllergyApp\\Business\\Business.csproj",
-        "packagesPath": "C:\\Users\\Scott\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\walden2020\\.nuget\\packages\\",
         "outputPath": "C:\\waldenltd\\FairfieldAllergyApp\\Business\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Scott\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\walden2020\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -55,15 +50,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Runtime.win-x86",
-              "version": "[3.1.3, 3.1.3]"
+              "version": "[3.1.5, 3.1.5]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.win-x86",
-              "version": "[3.1.3, 3.1.3]"
+              "version": "[3.1.5, 3.1.5]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Runtime.win-x86",
-              "version": "[3.1.3, 3.1.3]"
+              "version": "[3.1.5, 3.1.5]"
             }
           ],
           "frameworkReferences": {
@@ -71,7 +66,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -86,17 +81,12 @@
         "projectUniqueName": "C:\\waldenltd\\FairfieldAllergyApp\\FairfieldAllergy.Data\\FairfieldAllergy.Data.csproj",
         "projectName": "FairfieldAllergy.Data",
         "projectPath": "C:\\waldenltd\\FairfieldAllergyApp\\FairfieldAllergy.Data\\FairfieldAllergy.Data.csproj",
-        "packagesPath": "C:\\Users\\Scott\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\walden2020\\.nuget\\packages\\",
         "outputPath": "C:\\waldenltd\\FairfieldAllergyApp\\FairfieldAllergy.Data\\obj\\publish\\win-x86\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Scott\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\walden2020\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -156,15 +146,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Runtime.win-x86",
-              "version": "[3.1.3, 3.1.3]"
+              "version": "[3.1.5, 3.1.5]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.win-x86",
-              "version": "[3.1.3, 3.1.3]"
+              "version": "[3.1.5, 3.1.5]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Runtime.win-x86",
-              "version": "[3.1.3, 3.1.3]"
+              "version": "[3.1.5, 3.1.5]"
             }
           ],
           "frameworkReferences": {
@@ -172,7 +162,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -187,17 +177,12 @@
         "projectUniqueName": "C:\\waldenltd\\FairfieldAllergyApp\\FairfieldAllergy.Domain\\FairfieldAllergy.Domain.csproj",
         "projectName": "FairfieldAllergy.Domain",
         "projectPath": "C:\\waldenltd\\FairfieldAllergyApp\\FairfieldAllergy.Domain\\FairfieldAllergy.Domain.csproj",
-        "packagesPath": "C:\\Users\\Scott\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\walden2020\\.nuget\\packages\\",
         "outputPath": "C:\\waldenltd\\FairfieldAllergyApp\\FairfieldAllergy.Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Scott\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\walden2020\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -246,15 +231,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Runtime.win-x86",
-              "version": "[3.1.3, 3.1.3]"
+              "version": "[3.1.5, 3.1.5]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.win-x86",
-              "version": "[3.1.3, 3.1.3]"
+              "version": "[3.1.5, 3.1.5]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Runtime.win-x86",
-              "version": "[3.1.3, 3.1.3]"
+              "version": "[3.1.5, 3.1.5]"
             }
           ],
           "frameworkReferences": {
@@ -262,7 +247,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

@@ -63,7 +63,7 @@ namespace CreatingIDAndPasswords.Service
 
             for (int i = 0; i < allergyPatient.Count; i++)
             {
-                Console.WriteLine("Processing record " + i.ToString());
+                Console.WriteLine(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " Processing record " + i.ToString());
 
                 string userID = generator.RandomString(10, false);
 

@@ -11,6 +11,7 @@
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
+      "commandLineArgs": "06-26-2020 2",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",
       "environmentVariables": {

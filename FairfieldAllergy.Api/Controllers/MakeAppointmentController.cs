@@ -29,7 +29,7 @@ namespace FairfieldAllergy.Api.Controllers
 
             FairfieldAllergeryRepository fairfieldAllergeryRepository = new FairfieldAllergeryRepository();
 
-            operationResult = fairfieldAllergeryRepository.AddAppointment(words[0], words[1] + words[2], appointment.Location.ToString(), appointment.UserId.ToString(), appointment.SlotID.ToString());
+            operationResult = fairfieldAllergeryRepository.AddAppointment(words[3], words[0] + words[1], appointment.Location.ToString(), appointment.UserId.ToString(), appointment.SlotID.ToString());
 
             if (operationResult.Success)
             {

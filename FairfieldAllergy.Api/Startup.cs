@@ -1,23 +1,19 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using FairfieldAllergy.Api.Security;
 using FairfieldAllergy.Data;
 using FairfieldAllergy.Domain;
-using FairfieldAllergy.Domain.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Business.Configuration;
 
 namespace FairfieldAllergy.Api
 {
@@ -26,11 +22,9 @@ namespace FairfieldAllergy.Api
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            ConfigurationValues.PrintScheduleUrl = Configuration["PrintScheduleUrl"]; ;
         }
-        //public Startup(IConfiguration configuration)
-        //{
-        //    Configuration = (IConfigurationRoot)configuration;
-        //}
 
         public IConfiguration Configuration { get; }
 
@@ -117,7 +111,7 @@ namespace FairfieldAllergy.Api
                   .EnableSensitiveDataLogging()
                );
             services.AddRazorPages();
-            Business.Configuration.ConfigurationValues.FairfieldAllergyConnection = "Server = 64.41.86.25; Database = Appointment; Uid = Appointment; Pwd = 0griswold;";
+            ConfigurationValues.FairfieldAllergyConnection = "Server = 64.41.86.25; Database = Appointment; Uid = Appointment; Pwd = 0griswold;";
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

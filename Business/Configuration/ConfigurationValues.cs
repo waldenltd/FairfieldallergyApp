@@ -28,6 +28,7 @@ namespace Business.Configuration
         static string hl7ImporPath = string.Empty;
         static string fairfieldAllergyConnection = string.Empty;
         static string registerUrl = string.Empty;
+        static string printScheduleUrl = string.Empty;
 
         public static string AuthorizedUsers
         {
@@ -292,7 +293,16 @@ namespace Business.Configuration
             }
         }
 
-        
-
+        public static string PrintScheduleUrl
+        {
+            get
+            {
+                return printScheduleUrl;
+            }
+            set
+            {
+                printScheduleUrl = value;
+            }
+        }
     }
 }

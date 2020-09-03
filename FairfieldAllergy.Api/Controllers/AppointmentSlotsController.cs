@@ -19,7 +19,9 @@ namespace FairfieldAllergy.Api.Controllers
         public IActionResult Get(string parametersString)
         {
             string[] parameters = parametersString.Split('~');
+            /*
             string parameters2 = parameters[0].Substring(0, 15);
+            
             string monthString = parameters2.Substring(4, 3);
             string dayMonth = parameters2.Substring(7, 8).Replace(" ", "-");
             string newDate = string.Empty;
@@ -66,12 +68,12 @@ namespace FairfieldAllergy.Api.Controllers
                     // code block
                     break;
             }
-
+*/
             OperationResult operationResult = new OperationResult();
 
             FairfieldAllergeryRepository fairfieldAllergeryRepository = new FairfieldAllergeryRepository();
 
-            operationResult = fairfieldAllergeryRepository.GetAppointmentSlots(newDate, parameters[1]);
+            operationResult = fairfieldAllergeryRepository.GetAppointmentSlots(parameters[0], parameters[1]);
 
             if (operationResult.Success)
             {
@@ -92,16 +94,15 @@ namespace FairfieldAllergy.Api.Controllers
             FairfieldAllergeryRepository fairfieldAllergeryRepository = new FairfieldAllergeryRepository();
             for (int i = 0; i < appointmentSlots.Count; i++)
             {
-
-                if (appointmentSlots[i].NumberSlots < 1)
-                {
-                    OperationResult operationResult = new OperationResult();
-                    operationResult = fairfieldAllergeryRepository.UpdateNumberOfSlots(appointmentSlots[i].SlotId, 0);
-                }
-                else if (appointmentSlots[i].NewSlotNumber > 0)
+                if (appointmentSlots[i].NewSlotNumber > -1)
                 {
                     OperationResult operationResult = new OperationResult();
                     operationResult = fairfieldAllergeryRepository.UpdateNumberOfSlots(appointmentSlots[i].SlotId, appointmentSlots[i].NewSlotNumber);
+                }
+                else if (appointmentSlots[i].NumberSlots < 1)
+                {
+                    OperationResult operationResult = new OperationResult();
+                    operationResult = fairfieldAllergeryRepository.UpdateNumberOfSlots(appointmentSlots[i].SlotId, 0);
                 }
             }
             return Ok(new { status = "Success" });

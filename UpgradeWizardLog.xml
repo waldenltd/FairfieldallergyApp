@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="_UpgradeWizard_Files\UpgradeWizardLog.xslt"?>
+<log>
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\FairfieldAllergy.Domain.csproj" />
+  <event action="Analyze" type="Success" name="FairfieldAllergy.Domain" path="C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Domain\FairfieldAllergy.Domain.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Data\FairfieldAllergy.Data.csproj" />
+  <event action="Analyze" type="Success" name="FairfieldAllergy.Data" path="C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Data\FairfieldAllergy.Data.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\Tests\Tests.csproj" />
+  <event action="Analyze" type="Success" name="Tests" path="C:\waldenltd\FairfieldAllergyApp\Tests\Tests.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\ConsoleApp\ConsoleApp.csproj" />
+  <event action="Analyze" type="Success" name="ConsoleApp" path="C:\waldenltd\FairfieldAllergyApp\ConsoleApp\ConsoleApp.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Api\FairfieldAllergy.Api.csproj" />
+  <event action="Analyze" type="Success" name="FairfieldAllergy.Api" path="C:\waldenltd\FairfieldAllergyApp\FairfieldAllergy.Api\FairfieldAllergy.Api.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\Business\Business.csproj" />
+  <event action="Analyze" type="Success" name="Business" path="C:\waldenltd\FairfieldAllergyApp\Business\Business.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\CreatingIDAndPasswords\CreatingIDAndPasswords.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\CreatingIDAndPasswords\App.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\waldenltd\FairfieldAllergyApp\CreatingIDAndPasswords\App.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\waldenltd\FairfieldAllergyApp\CreatingIDAndPasswords\App.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\waldenltd\FairfieldAllergyApp\CreatingIDAndPasswords\App.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\waldenltd\FairfieldAllergyApp\CreatingIDAndPasswords\App.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\waldenltd\FairfieldAllergyApp\CreatingIDAndPasswords\App.config" />
+  <event action="Analyze" type="Success" name="App.config" path="C:\waldenltd\FairfieldAllergyApp\CreatingIDAndPasswords\App.config" />
+  <event action="Analyze" type="Success" name="CreatingIDAndPasswords" path="C:\waldenltd\FairfieldAllergyApp\CreatingIDAndPasswords\CreatingIDAndPasswords.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\TelerikServiceReports.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\app.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\packages.config" />
+  <event action="Analyze" type="Success" name="PrintSchedule.resx" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\PrintSchedule.resx" />
+  <event action="Analyze" type="Success" name="ServiceReport.resx" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\ServiceReport.resx" />
+  <event action="Analyze" type="Success" name="TelerikServiceReports" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\TelerikServiceReports.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\ProcessReport\ProcessReport.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\ProcessReport\App.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\waldenltd\FairfieldAllergyApp\ProcessReport\App.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\waldenltd\FairfieldAllergyApp\ProcessReport\App.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\waldenltd\FairfieldAllergyApp\ProcessReport\App.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\waldenltd\FairfieldAllergyApp\ProcessReport\App.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\waldenltd\FairfieldAllergyApp\ProcessReport\App.config" />
+  <event action="Analyze" type="Success" name="App.config" path="C:\waldenltd\FairfieldAllergyApp\ProcessReport\App.config" />
+  <event action="Analyze" type="Success" name="ProcessReport" path="C:\waldenltd\FairfieldAllergyApp\ProcessReport\ProcessReport.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\ProcessServiceReport.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\packages.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.config" />
+  <event action="Analyze" type="Success" name="Web.config" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Web.Debug.config" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Web.Release.config" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\Web.Release.config" />
+  <event action="Analyze" type="Success" name="ProcessServiceReport" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\ProcessServiceReport.csproj" />
+  <event action="Analyze" type="Success" name="FairfieldAllergyApp" path="C:\waldenltd\FairfieldAllergyApp\FairfieldAllergyApp.sln" />
+  <event action="Backup" type="Success" name="TelerikServiceReports" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\TelerikServiceReports.csproj" />
+  <event action="Backup" type="Success" name="ProcessReport" path="C:\waldenltd\FairfieldAllergyApp\ProcessReport\ProcessReport.csproj" />
+  <event action="Backup" type="Success" name="ProcessServiceReport" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\ProcessServiceReport.csproj" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\TelerikServiceReports.csproj" />
+  <event action="Upgrade" type="Success" name="Config Sections" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\app.config" />
+  <event action="Upgrade" type="Success" name="app.config" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\app.config" />
+  <event action="Upgrade" type="Success" name="TelerikServiceReports" path="C:\waldenltd\FairfieldAllergyApp\TelerikServiceReports\TelerikServiceReports.csproj" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\ProcessReport\ProcessReport.csproj" />
+  <event action="Upgrade" type="Success" name="ProcessReport" path="C:\waldenltd\FairfieldAllergyApp\ProcessReport\ProcessReport.csproj" />
+  <event>Installed NuGet package: Telerik.Reporting 14.1.20.618</event>
+  <event type="Error">System.InvalidOperationException: A problem occurred while trying to install the NuGet package Telerik.Reporting 14.1.20.618.
+You can try to update your NuGet client or install the packages manually.
+ ---&gt; System.InvalidOperationException: Package 'Telerik.Reporting 14.1.20.618' is not found in the following primary source(s): 'https://api.nuget.org/v3/index.json,C:\Program Files (x86)\Microsoft SDKs\NuGetPackages\'. Please verify all your online package sources are available (OR) package id, version are specified correctly.
+   at NuGet.PackageManagement.ResolverGather.&lt;GatherAsync&gt;d__21.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at NuGet.PackageManagement.ResolverGather.&lt;GatherAsync&gt;d__20.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.ValidateEnd(Task task)
+   at NuGet.PackageManagement.NuGetPackageManager.&lt;PreviewInstallPackageAsync&gt;d__68.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at NuGet.PackageManagement.NuGetPackageManager.&lt;InstallPackageAsync&gt;d__48.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at NuGet.PackageManagement.NuGetPackageManager.&lt;InstallPackageAsync&gt;d__47.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at NuGet.VisualStudio.VsPackageInstaller.&lt;InstallInternalCoreAsync&gt;d__30.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.ValidateEnd(Task task)
+   at NuGet.VisualStudio.VsPackageInstaller.&lt;InstallInternalAsync&gt;d__29.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at NuGet.VisualStudio.VsPackageInstaller.&lt;InstallInternalAsync&gt;d__29.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.VisualStudio.Threading.JoinableTask.CompleteOnCurrentThread()
+   at NuGet.VisualStudio.VsPackageInstaller.RunJTFWithCorrectContext(Project project, Func`1 asyncTask)
+   at NuGet.VisualStudio.VsPackageInstaller.InstallPackage(String source, Project project, String packageId, String version, Boolean ignoreDependencies)
+   at Telerik.Reporting.Vs.Common.NugetManager.InstallPackage(String package, String version)
+   --- End of inner exception stack trace ---</event>
+  <event action="Upgrade" type="Success" name="Assembly References" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\ProcessServiceReport.csproj" />
+  <event action="Upgrade" type="Success" name="ProcessServiceReport" path="C:\waldenltd\FairfieldAllergyApp\ProcessServiceReport\ProcessServiceReport.csproj" />
+  <event action="Upgrade" type="Success" name="FairfieldAllergyApp" path="C:\waldenltd\FairfieldAllergyApp\FairfieldAllergyApp.sln" />
+</log>

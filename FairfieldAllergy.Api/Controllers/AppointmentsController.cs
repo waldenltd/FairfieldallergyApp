@@ -19,6 +19,11 @@ namespace FairfieldAllergy.Api.Controllers
         public IActionResult Get(string parametersString)
         {
             string[] parameters = parametersString.Split('~');
+            string parameterTest = parameters[0].Substring(0, 10);
+
+            DateTime date = Convert.ToDateTime(parameterTest);
+
+
             string parameters2 = parameters[0].Substring(0, 15);
             string monthString = parameters2.Substring(4, 3);
             string dayMonth = parameters2.Substring(7, 8).Replace(" ", "-");
@@ -71,7 +76,7 @@ namespace FairfieldAllergy.Api.Controllers
 
             FairfieldAllergeryRepository fairfieldAllergeryRepository = new FairfieldAllergeryRepository();
 
-            operationResult = fairfieldAllergeryRepository.GetListOfAppointment(newDate, parameters[1]);
+            operationResult = fairfieldAllergeryRepository.GetListOfAppointment(date.ToShortDateString() , parameters[1]);
 
             if (operationResult.Success)
             {
