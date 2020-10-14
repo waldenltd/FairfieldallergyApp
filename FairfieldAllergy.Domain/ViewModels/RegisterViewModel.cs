@@ -56,7 +56,7 @@ namespace FairfieldAllergy.Domain.ViewModels
         [Required]
         public string Sex { get; set; }
 
-        [Required]
+        //[Required]
         public string HomePhone { get; set; }
     }
 }

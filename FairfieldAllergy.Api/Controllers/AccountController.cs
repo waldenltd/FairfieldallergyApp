@@ -144,12 +144,17 @@ namespace FairfieldAllergy.Api.Controllers
         {
             if (ModelState.IsValid)
             {
+                FairfieldAllergeryRepository fairfieldAllergeryRepository = new FairfieldAllergeryRepository();
+
+                //fairfieldAllergeryRepository.GetUseridFromEmail(model.UserName);
+
                 //var checkPassword = await signInManager.CheckPasswordSignInAsync.PasswordSignInAsync(model.Email, model.Password, true, false);
-                var user = await userManager.FindByNameAsync(model.UserName);
-                var checkPassword = await signInManager.CheckPasswordSignInAsync(user, model.OldPassword, true);
-                if (checkPassword.Succeeded)
-                {
-                    var token = await userManager.GeneratePasswordResetTokenAsync(user);
+                //var user = await userManager.FindByNameAsync(fairfieldAllergeryRepository.GetUseridFromEmail(model.UserName));
+                var user = await userManager.FindByEmailAsync(model.UserName);
+                //var checkPassword = await signInManager.CheckPasswordSignInAsync(user, model.OldPassword, true);
+                //if (checkPassword.Succeeded)
+                //{
+                var token = await userManager.GeneratePasswordResetTokenAsync(user);
                     try
                     {
 
@@ -180,11 +185,11 @@ namespace FairfieldAllergy.Api.Controllers
                     {
                         return Ok(new { status = "Failed" });
                     }
-                }
-                else
-                {
-                    return Ok(new { status = "Failed" });
-                }
+                //}
+                //else
+                //{
+                //    return Ok(new { status = "Failed" });
+                //}
             }
             else
             {
@@ -201,8 +206,10 @@ namespace FairfieldAllergy.Api.Controllers
 
         [HttpPost("api/forgotpassword")]
         [AllowAnonymous]
-        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordViewModel model)
         {
+            ChangePassword changePassword = new ChangePassword();
+
             if (ModelState.IsValid)
             {
                 var user = await userManager.FindByEmailAsync(model.Email);
@@ -211,18 +218,20 @@ namespace FairfieldAllergy.Api.Controllers
                 {
                     var token = await userManager.GeneratePasswordResetTokenAsync(user);
 
-                    var passwordResetLink = Url.Action("ResetPassword", "Account",
-                            new { email = model.Email, token = token }, Request.Scheme);
+                    changePassword.Token = token;
+                    changePassword.Email = model.Email;
+                    changePassword.Status = "Success";
 
-                    logger.Log(LogLevel.Warning, passwordResetLink);
-
-                    return View("ForgotPasswordConfirmation");
+                    return Ok(changePassword);
                 }
-
-                return View("ForgotPasswordConfirmation");
+                else 
+                {
+                    changePassword.Status = "Failure";
+                    return Ok(changePassword);
+               }
             }
-
-            return View(model);
+            changePassword.Status = "Failure";
+            return Ok(changePassword);
         }
 
         [AllowAnonymous]
@@ -359,6 +368,7 @@ namespace FairfieldAllergy.Api.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> AdminLogin([FromBody] AdminLoginViewModel model)
         {
+
             if (ModelState.IsValid)
             {
                 try
@@ -372,7 +382,7 @@ namespace FairfieldAllergy.Api.Controllers
                 }
                 catch (Exception ex)
                 {
-                    // _logger.LogError($"Exception thrown while logging in: {ex}");
+                    string s1 = ex.ToString();
                 }
             }
 
@@ -400,19 +410,139 @@ namespace FairfieldAllergy.Api.Controllers
                     if (result.Succeeded)
                     {
                         FairfieldAllergeryRepository fairfieldAllergeryRepository = new FairfieldAllergeryRepository();
-                        userInformation = fairfieldAllergeryRepository.GetUserInformation(model.UserName);
-                        userInformation.Status = "Success";
-                        return Ok(userInformation);
-                        //return Ok(new { status = "Success" });
+
+                        if (fairfieldAllergeryRepository.HasUserChangedIdAndPassword(model.UserName))
+                        {
+                            userInformation = fairfieldAllergeryRepository.GetUserInformation(model.UserName);
+                            userInformation.Password = model.Password;
+                            userInformation.Status = "Success";
+                            return Ok(userInformation);
+                            //return Ok(new { status = "Success" });
+                        }
+                        else
+                        {
+                            userInformation = fairfieldAllergeryRepository.GetUserInformation(model.UserName);
+                            userInformation.Password = model.Password;
+                            userInformation.Status = "Change";
+                            return Ok(userInformation);
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
-                    // _logger.LogError($"Exception thrown while logging in: {ex}");
+                    string s1 = ex.ToString();
                 }
             }
 
             return Ok(new { status = "Failure" });
+        }
+
+
+        [HttpPost("api/changecredential")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ChangeCredentials([FromBody] ChangeCredentialsViewModel model)
+        {
+
+            ChangeCredentials changeCredentials = new ChangeCredentials();
+
+            if (ModelState.IsValid)
+            {
+                UserInformation userInformation = new UserInformation();
+                FairfieldAllergeryRepository fairfieldAllergeryRepository = new FairfieldAllergeryRepository();
+
+                try
+                {
+                    var result = await signInManager.PasswordSignInAsync(
+                                 model.OldUserName, model.OldPassword, true, false);
+
+                    //If signin works
+                    if (result.Succeeded)
+                    {
+                        //Check to see if user llready exists
+                        if (fairfieldAllergeryRepository.CheckToSeeIfIdIsAlreadyUsed(model.UserName))
+                        {
+                            var user = await userManager.FindByNameAsync(model.OldUserName);
+                            var checkPassword = await signInManager.CheckPasswordSignInAsync(user, model.OldPassword, true);
+                            if (checkPassword.Succeeded)
+                            {
+                                var token = await userManager.GeneratePasswordResetTokenAsync(user);
+                                if (user != null)
+                                {
+                                    var passwordChangeResult = await userManager.ResetPasswordAsync(user, token, model.Password);
+                                    if (passwordChangeResult.Succeeded)
+                                    {
+                                        //if (await userManager.IsLockedOutAsync(user))
+                                        //{
+                                        //    await userManager.SetLockoutEndDateAsync(user, DateTimeOffset.UtcNow);
+                                        //}
+                                        fairfieldAllergeryRepository.UpdateUseridAndPassword(model);
+
+                                    }
+                                    else
+                                    {
+                                        userInformation = fairfieldAllergeryRepository.GetUserInformation(model.UserName);
+                                        userInformation.Status = "Failure";
+                                        userInformation.ErrorMessage = "Password change did not succeed";
+                                        return Ok(userInformation);
+                                    }
+                                }
+                                else
+                                {
+                                    userInformation = fairfieldAllergeryRepository.GetUserInformation(model.UserName);
+                                    userInformation.Status = "Failure";
+                                    userInformation.ErrorMessage = "User is null";
+                                    return Ok(userInformation);
+                                }
+                            }
+                            else
+                            {
+                                userInformation = fairfieldAllergeryRepository.GetUserInformation(model.UserName);
+                                userInformation.Status = "Failure";
+                                userInformation.ErrorMessage = "Password check failed";
+                                return Ok(userInformation);
+                            }
+                        }
+                        else
+                        {
+                            userInformation = fairfieldAllergeryRepository.GetUserInformation(model.UserName);
+                            userInformation.Status = "Failure";
+                            userInformation.ErrorMessage = "UserId already taken.  Please select another";
+                            return Ok(userInformation);
+                        }
+                        //***************************************************************************************************
+                        if (fairfieldAllergeryRepository.HasUserChangedIdAndPassword(model.UserName))
+                        {
+                            userInformation = fairfieldAllergeryRepository.GetUserInformation(model.UserName);
+                            userInformation.Status = "Success";
+                            return Ok(userInformation);
+                        }
+                        else
+                        {
+                            userInformation = fairfieldAllergeryRepository.GetUserInformation(model.UserName);
+                            userInformation.Status = "Change";
+                            return Ok(userInformation);
+                        }
+                    }
+                    else
+                    {
+                        changeCredentials.Status = "Failure";
+                        changeCredentials.ErrorMessage = "None";
+                        userInformation = fairfieldAllergeryRepository.GetUserInformation(model.UserName);
+                        return Ok(userInformation);
+
+                        return Ok(changeCredentials);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string s1 = ex.ToString();
+                }
+            }
+
+            changeCredentials.Status = "Failure";
+            changeCredentials.ErrorMessage = "None";
+
+            return Ok(changeCredentials);
         }
 
         [AllowAnonymous]
@@ -566,7 +696,7 @@ namespace FairfieldAllergy.Api.Controllers
             }
             catch (Exception ex)
             {
-                //_logger.LogError($"Exception thrown while creating JWT: {ex}");
+                string s1 = ex.ToString();
             }
 
             return BadRequest("Failed to generate token");

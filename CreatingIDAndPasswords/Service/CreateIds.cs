@@ -54,7 +54,6 @@ namespace CreatingIDAndPasswords.Service
             ConfigurationValues.FairfieldAllergyConnection = System.Configuration.ConfigurationManager.AppSettings["fairfieldDatabaseConnection"];
             ConfigurationValues.RegisterUrl = System.Configuration.ConfigurationManager.AppSettings["registerUrl"];
 
-
             OperationResult getCurrentUserId = fairfieldAllergeryRepository.GetCurrentId();
 
             int currentId = getCurrentUserId.CurrentId;
@@ -63,53 +62,114 @@ namespace CreatingIDAndPasswords.Service
 
             for (int i = 0; i < allergyPatient.Count; i++)
             {
-                Console.WriteLine(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " Processing record " + i.ToString());
+                //i = 3695;
 
-                string userID = generator.RandomString(10, false);
-
-                string password = generator.RandomPassword();
-
-                fairfieldAllergeryRepository.CreateNewUser(allergyPatient[i], userID, password);
-
-                string sex = string.Empty;
-                if (allergyPatient[i].gender == 1)
+                //Console.WriteLine("Begin record: " + i.ToString() + " of " + allergyPatient.Count.ToString());
+                try
                 {
-                    sex = "M";
+                    Console.WriteLine(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " Processing record " + i.ToString() + " of " + allergyPatient.Count.ToString());
+
+                    if (allergyPatient[i].first_name.Length > 0 && allergyPatient[i].last_name.Length > 0)
+                    {
+                        if (allergyPatient[i].first_name.Length == 1)
+                        {
+                            allergyPatient[i].first_name = "None";
+                        }
+
+                        if (allergyPatient[i].last_name.Length == 1)
+                        {
+                            allergyPatient[i].last_name = "None";
+                        }
+
+                        string userID = generator.RandomString(10, false);
+
+                        string password = generator.RandomPassword();
+
+                        fairfieldAllergeryRepository.CreateNewUser(allergyPatient[i], userID, password);
+
+                        string sex = string.Empty;
+                        if (allergyPatient[i].gender == 1)
+                        {
+                            sex = "M";
+                        }
+                        else if (allergyPatient[i].gender == 2)
+                        {
+                            sex = "F";
+                        }
+
+                        RegisterViewModel registerViewModel = new RegisterViewModel();
+
+                        registerViewModel.Email = "None";
+
+                        registerViewModel.FirstName = allergyPatient[i].first_name;
+                        registerViewModel.LastName = allergyPatient[i].last_name;
+                        if (string.IsNullOrEmpty(allergyPatient[i].home_phone))
+                        {
+                            registerViewModel.HomePhone = "0000000000";
+                        }
+                        else
+                        {
+                            registerViewModel.HomePhone = allergyPatient[i].home_phone;
+                        }
+
+                        if (sex.Length < 1)
+                        {
+                            registerViewModel.Sex = "U";
+                        }
+                        else
+                        {
+                            registerViewModel.Sex = sex;
+                        }
+
+
+                        if (string.IsNullOrEmpty(allergyPatient[i].birthday.ToShortDateString()))
+                        {
+                            registerViewModel.DateOfBirth = " ";
+                        }
+                        else
+                        {
+                            registerViewModel.DateOfBirth = allergyPatient[i].birthday.ToShortDateString();
+                        }
+
+
+                        //registerViewModel.DateOfBirth = allergyPatient[i].birthday.ToShortDateString();
+
+                        registerViewModel.UserName = userID;
+                        registerViewModel.Password = password;
+                        registerViewModel.ConfirmPassword = password;
+
+                        var json = JsonConvert.SerializeObject(registerViewModel);
+                        var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+                        var url = ConfigurationValues.RegisterUrl;
+                        using var client = new HttpClient();
+
+                        var response = await client.PostAsync(url, data);
+
+                        string jsonResult = response.Content.ReadAsStringAsync().Result;
+
+                        var result = JsonConvert.DeserializeObject<Status>(jsonResult);
+
+                        Console.WriteLine(result);
+
+                        currentId = allergyPatient[i].pkid;
+
+                        if (result.status == "Failure")
+                        {
+                            string s2 = string.Empty;
+                        }
+
+
+                        fairfieldAllergeryRepository.UpdateWebIdTableWithGuidFromAspNetUsersTable(userID);
+                    }
+                    Console.WriteLine("Done with record: " + i.ToString() + " of " + allergyPatient.Count.ToString());
+
                 }
-                else if (allergyPatient[i].gender == 2)
+                catch (Exception er)
                 {
-                    sex = "F";
+                    Console.WriteLine(er.ToString());
                 }
-
-                RegisterViewModel registerViewModel = new RegisterViewModel();
-
-                registerViewModel.Email = allergyPatient[i].first_name;
-
-                registerViewModel.FirstName = allergyPatient[i].first_name;
-                registerViewModel.LastName = allergyPatient[i].last_name;
-                registerViewModel.HomePhone = allergyPatient[i].home_phone;
-                registerViewModel.Sex = sex;
-                registerViewModel.DateOfBirth = allergyPatient[i].birthday.ToShortDateString();
-
-                registerViewModel.UserName = userID;
-                registerViewModel.Password = password;
-                registerViewModel.ConfirmPassword = password;
-
-                var json = JsonConvert.SerializeObject(registerViewModel);
-                var data = new StringContent(json, Encoding.UTF8, "application/json");
-
-                var url = ConfigurationValues.RegisterUrl;
-                using var client = new HttpClient();
-
-                var response = await client.PostAsync(url, data);
-
-                string jsonResult = response.Content.ReadAsStringAsync().Result;
-
-                var result = JsonConvert.DeserializeObject<Status>(jsonResult);
-
-                Console.WriteLine(result);
-
-                currentId = allergyPatient[i].pkid;
+                //Need to get GUID in AspNetUsers table and put it into WEBID
             }
 
             if (allergyPatient.Count > 0)
@@ -120,6 +180,8 @@ namespace CreatingIDAndPasswords.Service
             {
                 Console.WriteLine("No records to process");
             }
+
+            fairfieldAllergeryRepository.UpdateUsersWithDataFromRoach();
 
             //SQL Access Info
             //ID: walden

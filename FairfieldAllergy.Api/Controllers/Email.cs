@@ -69,8 +69,10 @@ namespace FairfieldAllergy.Api.Controllers
             htmlDocument.WriteLine("                <h4 style=" + Chr(34) + "font-weight: bold;" + Chr(34) + ">ID: " + patient.PatientUserId + "</h4>");
             htmlDocument.WriteLine("                <h4 style=" + Chr(34) + "font-weight: bold;" + Chr(34) + ">Password:  " + patient.PatientPassword + "</h4>");
             htmlDocument.WriteLine("<br />");
-            htmlDocument.WriteLine("<br />");           
-            htmlDocument.WriteLine("                <h4 style=" + Chr(34) + "font-weight: bold;" + Chr(34) + ">To login go to http://faccia.com</h4>");                         
+            htmlDocument.WriteLine("<br />");
+            //htmlDocument.WriteLine("                <h4 style=" + Chr(34) + "font-weight: bold;" + Chr(34) + ">To login go to https://myshot.fcaaia.com/FairfieldAllergyPatient"</h4>");
+            //www.xyz.com/contact.html#name=some_text&email=more%20text
+            htmlDocument.WriteLine("                <h4 style=" + Chr(34) + "font-weight: bold;" + Chr(34) + ">To login go to https://myshotdev.fcaaia.com/FairfieldAllergyPatient#" + patient.PatientUserId  + "</h4>");
             htmlDocument.WriteLine("            </td>");
             htmlDocument.WriteLine("        </tr>");
             htmlDocument.WriteLine("    </table>");

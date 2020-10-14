@@ -14,6 +14,7 @@ namespace FairfieldAllergy.Domain.Models
         public List<OpenAppointment> Appointments { get; set; }
         public List<AppointmentSlots> AppointmentSlots { get; set; }
         public List<Appointment> ExistingAppointments { get; set; }
+        public UserInformation UserInformation { get; set; }
         public List<Patient> Patient { get; set; }
         public Patient PatientCredentials { get; set; }
         public int CurrentId { get; set; }

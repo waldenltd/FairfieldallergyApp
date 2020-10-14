@@ -111,7 +111,8 @@ namespace FairfieldAllergy.Api
                   .EnableSensitiveDataLogging()
                );
             services.AddRazorPages();
-            ConfigurationValues.FairfieldAllergyConnection = "Server = 64.41.86.25; Database = Appointment; Uid = Appointment; Pwd = 0griswold;";
+            //ConfigurationValues.FairfieldAllergyConnection = "Server = 64.41.86.25; Database = Appointment; Uid = Appointment; Pwd = 0griswold;";
+            ConfigurationValues.FairfieldAllergyConnection = Configuration.GetConnectionString("FairfieldConnect");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

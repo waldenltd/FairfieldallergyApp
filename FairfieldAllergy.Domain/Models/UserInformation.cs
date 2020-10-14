@@ -7,6 +7,7 @@ namespace FairfieldAllergy.Domain.Models
     public class UserInformation
     {
         public string UserName { get; set; }
+        public string Password { get; set; }
         public int UserId { get; set; }
         public string NormalizedUserName { get; set; }
         public string Email { get; set; }
@@ -20,5 +21,8 @@ namespace FairfieldAllergy.Domain.Models
         public string HomePhone { get; set; }
         public int Location { get; set; }
         public string Status { get; set; }
+        public string ErrorMessage { get; set; }
+        public string UID { get; set; }
+        public string PWD { get; set; }
     }
 }

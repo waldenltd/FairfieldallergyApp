@@ -20,7 +20,7 @@ namespace FairfieldAllergy.Api.Controllers
 
             FairfieldAllergeryRepository fairfieldAllergeryRepository = new FairfieldAllergeryRepository();
 
-            operationResult = fairfieldAllergeryRepository.GetPatientIdAndPassword(parametersString);
+            operationResult = fairfieldAllergeryRepository.GetPatientIdAndPassword(int.Parse(parametersString));
 
             if (operationResult.Success)
             {
